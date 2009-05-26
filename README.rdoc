@@ -1,0 +1,7 @@
+= casful_authentication_generator
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Brian Hogan. See LICENSE for details.
