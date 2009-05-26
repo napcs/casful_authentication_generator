@@ -9,6 +9,8 @@ begin
     gem.email = "brianhogan@napcs.com"
     gem.homepage = "http://github.com/napcs/casful_authentication_generator"
     gem.authors = ["Brian Hogan"]
+    gem.require_paths = ['.']
+    gem.files =   FileList["[A-Z]*", "templates/*", "*.rb" ]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 

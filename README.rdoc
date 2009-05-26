@@ -1,6 +1,66 @@
 = casful_authentication_generator
 
-Description goes here.
+Helper methods to make authenticating your site with CAS a little easier. Based on Restful Authentication, and uses the rubycas-client plugin.
+
+== Installation
+
+  sudo gem install casful_authentication_generator
+  
+== Usage
+
+In your Rails application's root folder,  run this:
+
+  ruby script/generate casful_authentication user https://cas.example.com/
+  
+This will install the rubycas-client plugin and will create the helper file and the initializer to set up CAS.
+
+Then, add
+
+  include CasAuthentication
+  
+to either ApplicationController or specific controllers that need protecting.
+
+Finally, use
+
+  before_filter :login_required
+  
+to protect your controllers.
+
+== Customization
+
+There are a few ways to customize this code:
+
+== Locating users
+
+The plugin assumes you have a User table and each user has a <tt>login</tt> attribute.  When CAS sends the username back to your app, the helpers will look up the user in your table by the login name.
+
+Want to change this? Redefine the <tt>locate_user</tt> method in your controller.
+
+  def locate_user
+    User.find_by_username(session[:cas_user]) if session[:cas_user]
+  end
+
+The name of this method depends on how you called the generator. aIt would be <tt>locate_account</tt> if you generated the code using "account" instead of "user".
+
+== Access Denied
+
+By default, the access_denied method will be called if the user supplied by CAS is not found in your system. If you want to change the behavior, implement the method <tt>access_denied</tt> in your controller.
+
+  def access_denied
+    render :text => "You don't have access to this"
+  end
+
+== Skipping plugin installation
+
+  Run the generator with the --skip-plugin switch to keep it from installing the rubycas-client plugin.
+
+
+== History
+
+=== 0.1.0 = May 26th, 2009
+Initial release
+
+
 
 == Copyright
 
