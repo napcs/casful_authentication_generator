@@ -29,8 +29,12 @@ module CasAuthentication
         return unless session[:cas_user]
      end
      # look them up in our system - based on restful_auth's login_from_session
-     self.current_user = locate_<%=singular_name %>
-     access_denied if self.current_<%=singular_name %>.nil?  
+     self.current_<%=singular_name %> = locate_<%=singular_name %>
+     if self.current_<%=singular_name %>.nil?  
+       access_denied 
+     else
+       self.current_<%=singular_name %>
+     end
   end
   
   # override this in your own controller

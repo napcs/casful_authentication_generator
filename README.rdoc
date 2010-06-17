@@ -57,6 +57,11 @@ By default, the access_denied method will be called if the user supplied by CAS 
 
 == History
 
+
+=== 0.2.1 = June 17th, 2010
+* Fixed a nasty bug preventing the current_user variable from being returned correctly
+* Fixed a method name bug in the generator. 
+
 === 0.1.0 = May 26th, 2009
 Initial release
 

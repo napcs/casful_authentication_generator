@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{casful_authentication_generator}
-  s.version = "0.1.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brian Hogan"]
-  s.date = %q{2009-05-26}
+  s.date = %q{2010-06-17}
   s.email = %q{brianhogan@napcs.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -25,8 +25,9 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/napcs/casful_authentication_generator}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["."]
+  s.rubyforge_project = %q{casfulauth}
   s.rubygems_version = %q{1.3.1}
-  s.summary = %q{TODO}
+  s.summary = %q{Generator to quickly put CAS authentication on your Rails application. Provides a currnet_user method to controllers and views to make it work like Restful Authentication and other plugins. }
   s.test_files = [
     "test/casful_authentication_generator_test.rb",
      "test/test_helper.rb"
