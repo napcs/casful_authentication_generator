@@ -1,4 +1,4 @@
-= casful_authentication_generator
+= casful_authentication_generator for Rails 2.x applications
 
 Helper methods to make authenticating your site with CAS a little easier. Based on Restful Authentication, and uses the rubycas-client plugin.
 
@@ -57,6 +57,9 @@ By default, the access_denied method will be called if the user supplied by CAS 
 
 == History
 
+=== 0.3.0 = September 23 2010
+* login_from_cas returns the user object now instead of a boolean for current_user. Thought we had this fixed previously.
+* Installs CAS plugin from git://github.com/gunark/rubycas-client.git now instead of the old dead version.
 
 === 0.2.1 = June 17th, 2010
 * Fixed a nasty bug preventing the current_user variable from being returned correctly

@@ -26,8 +26,8 @@ class CasfulAuthenticationGenerator < Rails::Generator::NamedBase
       
       unless options[:skip_plugin]
         puts "Installing the Cas plugin from"
-        puts "http://rubycas-client.googlecode.com/svn/trunk/rubycas-client"
-        `ruby script/plugin install http://rubycas-client.googlecode.com/svn/trunk/rubycas-client --force`
+        puts "git://github.com/gunark/rubycas-client.git"
+        `ruby script/plugin install git://github.com/gunark/rubycas-client.git --force`
       end
             
       m.template "cas_authentication.rb", "lib/cas_authentication.rb"

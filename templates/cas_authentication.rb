@@ -35,6 +35,7 @@ module CasAuthentication
      else
        self.current_<%=singular_name %>
      end
+     self.current_<%=singular_name %>
   end
   
   # override this in your own controller
