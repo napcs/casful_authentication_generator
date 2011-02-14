@@ -12,7 +12,7 @@ module CasAuthentication
   end
   
   def login_required
-    logged_in? 
+    logged_in? || access_denied
   end
     
   def login_from_cas
@@ -30,11 +30,6 @@ module CasAuthentication
      end
      # look them up in our system - based on restful_auth's login_from_session
      self.current_<%=singular_name %> = locate_<%=singular_name %>
-     if self.current_<%=singular_name %>.nil?  
-       access_denied 
-     else
-       self.current_<%=singular_name %>
-     end
      self.current_<%=singular_name %>
   end
   
@@ -42,6 +37,10 @@ module CasAuthentication
   # if you want different rules, for example
   # if you would like to find only active users,
   # or users of a certain role.
+  # 
+  # By default, you just look them up if their username exists in the session.
+  # But this would be a good place to check them against another system, or 
+  # do some role checking.
   def locate_<%=singular_name %>
     <%=class_name %>.find_by_username(session[:cas_user]) if session[:cas_user]
   end

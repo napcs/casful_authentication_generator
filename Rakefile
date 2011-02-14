@@ -1,24 +1,6 @@
 require 'rubygems'
 require 'rake'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "casful_authentication_generator"
-    gem.summary = %Q{TODO}
-    gem.email = "brianhogan@napcs.com"
-    gem.homepage = "http://github.com/napcs/casful_authentication_generator"
-    gem.authors = ["Brian Hogan"]
-    gem.require_paths = ['.']
-    gem.files =   FileList["[A-Z]*", "templates/*", "*.rb" ]
-    gem.rubyforge_project = "casfulauth"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
-end
-
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'

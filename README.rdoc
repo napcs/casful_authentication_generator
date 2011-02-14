@@ -57,6 +57,11 @@ By default, the access_denied method will be called if the user supplied by CAS 
 
 == History
 
+=== 0.4.0 = February 14th, 2011
+* Corrected a double-render situation relating to current_user and login_required.
+  * login_required method now correctly calls access_denied directly
+  * login_from_cas no longer calls access_denied directly. 
+
 === 0.3.0 = September 23 2010
 * login_from_cas returns the user object now instead of a boolean for current_user. Thought we had this fixed previously.
 * Installs CAS plugin from git://github.com/gunark/rubycas-client.git now instead of the old dead version.
