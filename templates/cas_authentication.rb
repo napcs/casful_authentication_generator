@@ -1,3 +1,21 @@
+# CasAuthentication helper methods to handle authentication.
+# You would be very wise not to modify this file and instead
+# include this into a controller of your own and override 
+# methods you need to customize.
+# 
+# class AuthenticatedController < ApplicationController
+#   include CasAuthentication
+#
+#   def access_denied
+#     redirect_to root_url, :notice => "You don't have access to that."
+#   end
+#
+#   def locate_user
+#     current_user = User.find_by_username(session[:cas_user]
+#   end
+#
+# end
+#
 module CasAuthentication
   protected
   
@@ -7,12 +25,17 @@ module CasAuthentication
     base.send :helper_method, :current_<%=singular_name %>, :logged_in?
   end
   
+  # Helper method for use in your views to see if there's a logged in user
   def logged_in?
     !!current_<%=singular_name %>
   end
   
-  def login_required
-    logged_in? || access_denied
+  # This is meant to be used as a before_filter in your controllers
+  # Use this when you need to force a user to log in.
+  # invokes the login_from_cas method which will invoke access_denied
+  # when no user can be found. 
+  def login_required             
+    login_from_cas
   end
     
   def login_from_cas
@@ -30,6 +53,7 @@ module CasAuthentication
      end
      # look them up in our system - based on restful_auth's login_from_session
      self.current_<%=singular_name %> = locate_<%=singular_name %>
+     access_denied unless self.current_<%=singular_name%>
      self.current_<%=singular_name %>
   end
   
@@ -57,7 +81,7 @@ module CasAuthentication
   # Accesses the current user from the session. 
   # Future calls avoid the database because nil is not equal to false.
   def current_<%=singular_name %>
-    @current_user ||= (login_from_cas) unless @current_<%=singular_name %> == false
+    @current_user ||= locate_<%=singular_name %> unless @current_<%=singular_name %> == false
   end
 
   # Store the given user id in the session.
