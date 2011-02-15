@@ -54,11 +54,31 @@ By default, the access_denied method will be called if the user supplied by CAS 
 
   Run the generator with the --skip-plugin switch to keep it from installing the rubycas-client plugin.
 
+== Testing with Cucumber
+
+Working with CAS and Cucumber can be somewhat tricky, so you can use the Fake capabilities of the CAS client library.
+You can use a matcher like this to set the session[:cas_user] variable with the username you desire, and your application
+will think that a user has been logged in to CAS elsewhere.
+
+    Given /^I have authenticated to Central Authentication with my username "([^"]*)"$/ do |username|
+      CASClient::Frameworks::Rails::Filter.fake(username)
+    end
+
+This approach can also be useful when testing with other methods.
+
+== Known issues
+
+  * No baked in support for handling situations where you want users who are not in CAS to authenticate. This is in the works.
+  * No support for Rails 3 yet. Since generators are so different, there will need to be a different project for that.
 
 == History
 
 === 0.4.1 = February 14th, 2011
-* Corrected a double-render situation relating to current_user and login_required.
+* MAJOR release. Corrected a double-render situation relating to current_user and login_required.
+  * The current_user helper no longer invokes the routine to authenticate a user against CAS and
+    instead now simply loads the user from session.
+* Added testing notes to the README
+* Added comments to the generated files.
 
 === 0.3.0 = September 23 2010
 * login_from_cas returns the user object now instead of a boolean for current_user. Thought we had this fixed previously.
