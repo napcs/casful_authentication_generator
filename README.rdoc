@@ -1,4 +1,4 @@
-= casful_authentication_generator for Rails 2.x applications
+= casful_authentication_generator for Rails 3.x applications
 
 Helper methods to make authenticating your site with CAS a little easier. Based on Restful Authentication, and uses the rubycas-client plugin.
 
@@ -10,15 +10,9 @@ Helper methods to make authenticating your site with CAS a little easier. Based 
 
 In your Rails application's root folder,  run this:
 
-  ruby script/generate casful_authentication user https://cas.example.com/
+  rails g casful_authentication user https://cas.example.com/
   
 This will install the rubycas-client plugin and will create the helper file and the initializer to set up CAS.
-
-Then, add
-
-  include CasAuthentication
-  
-to either ApplicationController or specific controllers that need protecting.
 
 Finally, use
 
@@ -69,9 +63,10 @@ This approach can also be useful when testing with other methods.
 == Known issues
 
   * No baked in support for handling situations where you want users who are not in CAS to authenticate. This is in the works.
-  * No support for Rails 3 yet. Since generators are so different, there will need to be a different project for that.
 
 == History
+=== 0.5.0 = May 11th, 2011
+* Updated to work in rails 3.
 
 === 0.4.1 = February 14th, 2011
 * MAJOR release. Corrected a double-render situation relating to current_user and login_required.
